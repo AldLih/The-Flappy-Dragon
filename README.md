@@ -10,6 +10,7 @@ Simple Flappy Dragon game made in Unity.
 ## Tech
 - Unity
 - C#
+- Aseprite
 
 ## Goal
 First step into game development.
