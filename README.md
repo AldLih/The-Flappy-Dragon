@@ -1,4 +1,4 @@
-#The Flappy Dragon
+# The Flappy Dragon
 
 Simple Flappy Dragon game made in Unity.
 
