@@ -12,3 +12,5 @@ UserSettings/
 *.csproj
 *.sln
 *.slnx
+Assets/TextMesh Pro/
+Packages/com.unity.textmeshpro/
