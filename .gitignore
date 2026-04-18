@@ -1,16 +1,25 @@
-[Ll]ibrary/
-[Tt]emp/
-[Oo]bj/
-[Bb]uild/
-[Bb]uilds/
-[Ll]ogs/
-UserSettings/
+/[Ll]ibrary/
+/[Tt]emp/
+/[Oo]bj/
+/[Bb]uild/
+/[Bb]uilds/
+/[Ll]ogs/
+/[Uu]serSettings/
+/[Mm]emoryCaptures/
+.utmp/
 .vs/
 .vsconfig
-.utmp/
-.gradle/
 *.csproj
 *.sln
 *.slnx
+*.suo
+*.user
+*.userprefs
+*.pidb
+.gradle/
+*.apk
+*.aab
+.DS_Store
+Thumbs.db
 Assets/TextMesh Pro/
-Packages/com.unity.textmeshpro/
+Assets/TextMesh Pro.meta
