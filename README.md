@@ -4,8 +4,11 @@ Simple Flappy Dragon game made in Unity.
 
 ## Features
 - Jump mechanic
-- Score system
-- Sound effects
+- Score system & high score saving
+- Sound effects & background music
+- Pause menu
+- Increasing difficulty
+- Quit button
 
 ## Tech
 - Unity
@@ -17,6 +20,12 @@ First step into game development.
 
 
 ## Updates
+
+### Alpha 0.0.4
+- Pause System: Added pause menu with resume, restart and menu buttons.
+- Increasing Difficulty: Game speed increases every 5 points, making the game progressively harder.
+- UI Overhaul: Separated UI logic into dedicated UIScript for cleaner architecture
+
 
 
 ### Alpha 0.0.3

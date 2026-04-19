@@ -1,18 +1,25 @@
+using System.Runtime.CompilerServices;
 using UnityEngine;
+using UnityEngine.Rendering;
 
 public class Pipespawner : MonoBehaviour
 {
-    public GameObject Pipe;
+    [SerializeField] private GameObject Pipe;
+    public static Pipespawner Instance;
     public float spawnRate = 2;
     private float timer = 0;
     private float pipeRange = 9;
-    private float nextSpawnX;
+    private float spawnOffset = 5f;
+    public float moveSpeed = 10f;
+    public float maxSpeed = 40f;
     void Start()
     {
-        nextSpawnX = transform.position.x;
-        Spawn(-10);
-    }
 
+    }
+    private void Awake()
+    {
+        Instance = this;
+    }
     void Update()
     {
         if (timer < spawnRate)
@@ -21,16 +28,17 @@ public class Pipespawner : MonoBehaviour
         }
         else
         {
-            Spawn(0);
+            Spawn();
             timer = 0;
         }
     }
 
-    public void Spawn(int xRange)
+    public void Spawn()
     {
-        nextSpawnX += 10;
+        float CameraEdge = Camera.main.transform.position.x + Camera.main.orthographicSize * Camera.main.aspect;
+        float spawnX = CameraEdge + spawnOffset;
         float pipeHighPos = transform.position.y + pipeRange;
         float pipeLowPos = transform.position.y - pipeRange;
-        Instantiate(Pipe, new Vector3(nextSpawnX + xRange, Random.Range(pipeLowPos, pipeHighPos), 0), transform.rotation);
+        Instantiate(Pipe, new Vector3(spawnX, Random.Range(pipeLowPos, pipeHighPos), 0), transform.rotation);
     }
 }

@@ -848,6 +848,56 @@ MonoBehaviour:
   music: {fileID: 0}
   jumpSound: {fileID: 0}
   scoreSound: {fileID: 0}
+--- !u!1 &639528236
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 639528238}
+  - component: {fileID: 639528237}
+  m_Layer: 0
+  m_Name: UIManager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &639528237
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 639528236}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6062183ace59d584a91eccdfd8b2285d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::UIScript
+  logicScript: {fileID: 0}
+  recordScore: {fileID: 0}
+  recordScoreInMenu: {fileID: 505454141}
+  currentScore: {fileID: 0}
+  gameOver: {fileID: 0}
+  score: {fileID: 0}
+--- !u!4 &639528238
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 639528236}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 994.57666, y: 627.63654, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1464250168
 GameObject:
   m_ObjectHideFlags: 0
@@ -877,14 +927,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e68d4e443a56531448cec8baab7a066c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::LogicScript
-  playerScore: 0
-  score: {fileID: 0}
-  gameOver: {fileID: 0}
   sceneName: GameScene
-  recordText: {fileID: 0}
-  recordTextInMenu: {fileID: 505454141}
-  currentTextInMenu: {fileID: 0}
-  soundScript: {fileID: 0}
+  soundScript: {fileID: 632854391}
+  uiScript: {fileID: 639528237}
 --- !u!4 &1464250170
 Transform:
   m_ObjectHideFlags: 0
@@ -1366,3 +1411,4 @@ SceneRoots:
   - {fileID: 1771143665}
   - {fileID: 632854390}
   - {fileID: 1464250170}
+  - {fileID: 639528238}

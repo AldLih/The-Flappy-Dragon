@@ -1,22 +1,17 @@
 using UnityEngine;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
-using TMPro;
-using System.Collections;
-using System.Collections.Generic;
+
 
 public class LogicScript : MonoBehaviour
 {
-    public int playerScore;
-    public Text score;
-    public GameObject gameOver;
-    [SerializeField] private string sceneName;
-    [SerializeField] private TextMeshProUGUI recordText;
-    [SerializeField] private TextMeshProUGUI recordTextInMenu;
-    [SerializeField] private TextMeshProUGUI currentTextInMenu;
-    [SerializeField] private SoundScript soundScript;
 
-    int bestScore = 0;
+    [SerializeField] private string sceneName;
+    [SerializeField] private SoundScript soundScript;
+    [SerializeField] private UIScript uiScript;
+
+
+    private int bestScore = 0;
+    private int playerScore;
 
 
     private void Start()
@@ -25,28 +20,16 @@ public class LogicScript : MonoBehaviour
     }
     public void SaveData()
     {
-        if (int.Parse(score.text) > bestScore) {
-            bestScore = int.Parse(score.text);
-            PlayerPrefs.SetInt("BestScore", bestScore);
-            recordText.text = $"NEW RECORD : {bestScore}";
-            PlayerPrefs.Save();
-        }
+        uiScript.TheBestScoreInGame(bestScore);
+        PlayerPrefs.SetInt("BestScore", bestScore);
+        PlayerPrefs.Save();
 
-        else
-        { 
-            PlayerPrefs.SetInt("BestScore", bestScore);
-            recordText.text = $"The Best Score : {bestScore}";
-            PlayerPrefs.Save();
-        }
     }
 
     public void LoadData()
     {
         bestScore = PlayerPrefs.GetInt("BestScore", bestScore);
-        if (recordTextInMenu != null)
-        {
-            recordTextInMenu.text = $"The Best Score : {bestScore}";
-        }
+        uiScript.TheBestScoreInMenu(bestScore);
     }
 
     public void DeleteData()
@@ -58,22 +41,50 @@ public class LogicScript : MonoBehaviour
     public void AddScore(int normalScore)
     {
         playerScore += normalScore;
-        score.text = playerScore.ToString();
+        uiScript.ScoreChange(playerScore);
+        IncreaseDifficulty();
     }
 
+    public void IncreaseDifficulty()
+    {
 
+        float newSpeed = 10f + (playerScore / 5) * 2f;
+        if (Pipespawner.Instance.maxSpeed < newSpeed)
+        {
+            newSpeed = Pipespawner.Instance.maxSpeed;
+        }
+        Pipespawner.Instance.spawnRate = 30f / newSpeed;
+        Pipespawner.Instance.moveSpeed = newSpeed;
+    }
+
+    public void PauseGame()
+    {
+        uiScript.ShowPauseMenu();
+        soundScript.ButtonSound();
+        Time.timeScale = 0;
+    }
+
+    public void ContinueGame()
+    {
+        uiScript.ClosePauseMenu();
+        soundScript.ButtonSound();
+        Time.timeScale = 1;
+    }
     public void RestartGame()
     {
+        Time.timeScale = 1;
         soundScript.ButtonSound();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
     public void StartGame()
     {
+        Time.timeScale = 1;
         soundScript.ButtonSound();
         SceneManager.LoadScene(sceneName);
     }
     public void GoToMenu()
     {
+        Time.timeScale = 1;
         soundScript.ButtonSound();
         SceneManager.LoadScene(sceneName);
     }
@@ -84,13 +95,8 @@ public class LogicScript : MonoBehaviour
     }
     public void GameOver()
     {
-
-        if (currentTextInMenu != null)
-        {
-            currentTextInMenu.text = $"Current Score : {score.text}";
-        }
-        score.gameObject.SetActive(false);
-        gameOver.SetActive(true);
+        Time.timeScale = 1;
+        uiScript.ShowGameOver();
         SaveData();
         soundScript.GameOverSound();
     }

@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class Dragon : MonoBehaviour
 {
-    public Rigidbody2D rb;
-    public float Strength;
+    private Rigidbody2D rb;
+    [SerializeField] private float Strength;
     public LogicScript logic;
     public bool isEggAlive { get; private set; } = true;
     [SerializeField] private SoundScript soundScript;
@@ -26,15 +26,23 @@ public class Dragon : MonoBehaviour
     void Update()
     {
 
-        if (isEggAlive)
+        if (isEggAlive && Time.timeScale != 0)
         {
-            bool isJump = Input.GetKeyDown(KeyCode.Space) || Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began || Input.GetMouseButtonDown(0); 
+            bool isJump = Input.GetKeyDown(KeyCode.Space) || Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began; 
             if (isJump)
             {
                 soundScript.JumpSound();
                 rb.linearVelocity = Vector2.up * Strength;
             }
+        }
 
+        if (isEggAlive)
+        {
+            if (Input.GetKeyDown(KeyCode.Escape) && Time.timeScale != 0)
+            {
+                logic.PauseGame();
+            }
+            else if (Input.GetKeyDown(KeyCode.Escape) && Time.timeScale != 1) { logic.ContinueGame(); }
         }
 
         if (MathF.Abs(transform.position.y)>borderLine && isEggAlive )
@@ -44,7 +52,7 @@ public class Dragon : MonoBehaviour
     }
     private void Die()
     {
-        if (!isEggAlive) return;
+        if (!isEggAlive && Time.timeScale != 0) return;
         logic.GameOver();
         isEggAlive = false;
     }
