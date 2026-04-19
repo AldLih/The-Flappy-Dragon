@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Logic
   - Dragon
+  - Sound
   layers:
   - Default
   - TransparentFX

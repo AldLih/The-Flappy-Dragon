@@ -1019,8 +1019,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::Dragon
   rb: {fileID: 0}
   Strength: 16
-  logic: {fileID: 0}
-  soundScript: {fileID: 1297378801}
+  logic: {fileID: 735169475}
+  soundScript: {fileID: 1297378803}
 --- !u!70 &458936097
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -1427,8 +1427,8 @@ MonoBehaviour:
   sceneName: MenuScene
   recordText: {fileID: 395284817}
   recordTextInMenu: {fileID: 0}
-  currentScore: {fileID: 28604368}
-  soundScript: {fileID: 1297378801}
+  currentTextInMenu: {fileID: 28604368}
+  soundScript: {fileID: 1297378803}
 --- !u!82 &735169476
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1537,10 +1537,10 @@ GameObject:
   - component: {fileID: 1297378800}
   - component: {fileID: 1297378799}
   - component: {fileID: 1297378802}
-  - component: {fileID: 1297378801}
+  - component: {fileID: 1297378803}
   m_Layer: 0
   m_Name: AudioManager
-  m_TagString: Untagged
+  m_TagString: Sound
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1556,7 +1556,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_Resource: {fileID: 8300000, guid: ea8d8239faecb0544ab7d7ce9fe16d00, type: 3}
+  m_Resource: {fileID: 8300000, guid: 3d04908329766a840a157cd4997ef4b9, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 0.507
   m_Pitch: 1
@@ -1657,25 +1657,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1297378801
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1297378798}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f397c270d1a4c594b929041caa3f9b9f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::SoundScript
-  musicSource: {fileID: 1297378799}
-  sfxSource: {fileID: 1297378802}
-  buttonClick: {fileID: 8300000, guid: 8a34e6816a648a84b9928de77005952d, type: 3}
-  deathSound: {fileID: 8300000, guid: 39ccfe2e72b9255439176de17cf536a7, type: 3}
-  music: {fileID: 8300000, guid: ea8d8239faecb0544ab7d7ce9fe16d00, type: 3}
-  jumpSound: {fileID: 8300000, guid: f52d0a9ba5f55654f96d0a11e720b752, type: 3}
-  scoreSound: {fileID: 8300000, guid: 5f97a3be75866fc41a8946e796f53af5, type: 3}
 --- !u!82 &1297378802
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1773,6 +1754,25 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &1297378803
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1297378798}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 73dffcfe2a4e537499f2bcf7136ca7df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::SoundScript
+  musicSource: {fileID: 1297378799}
+  sfxSource: {fileID: 1297378802}
+  buttonClick: {fileID: 8300000, guid: 8a34e6816a648a84b9928de77005952d, type: 3}
+  deathSound: {fileID: 8300000, guid: 273de031ea2e7c4478b00e44b5483157, type: 3}
+  music: {fileID: 0}
+  jumpSound: {fileID: 8300000, guid: e8c8fdd7d96424a42a3877c4ab6dd3c7, type: 3}
+  scoreSound: {fileID: 8300000, guid: 5f97a3be75866fc41a8946e796f53af5, type: 3}
 --- !u!1 &1488490431
 GameObject:
   m_ObjectHideFlags: 0
@@ -1859,18 +1859,6 @@ MonoBehaviour:
       - m_Target: {fileID: 735169475}
         m_TargetAssemblyTypeName: LogicScript, Assembly-CSharp
         m_MethodName: RestartGame
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1297378801}
-        m_TargetAssemblyTypeName: SoundScript, Assembly-CSharp
-        m_MethodName: ButtonSouns
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -2232,18 +2220,6 @@ MonoBehaviour:
       - m_Target: {fileID: 735169475}
         m_TargetAssemblyTypeName: LogicScript, Assembly-CSharp
         m_MethodName: GoToMenu
-        m_Mode: 1
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-      - m_Target: {fileID: 1297378801}
-        m_TargetAssemblyTypeName: SoundScript, Assembly-CSharp
-        m_MethodName: ButtonSound
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
