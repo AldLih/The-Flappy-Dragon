@@ -10,6 +10,12 @@ Simple Flappy Dragon game made in Unity.
 - Increasing difficulty
 - Quit button
 
+## Screenshots
+
+![gameplay](screenshots/gameplay.png)
+![gameover](screenshots/gamemenu.png)
+
+
 ## Tech
 - Unity
 - C#
