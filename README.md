@@ -27,6 +27,11 @@ First step into game development.
 
 ## Updates
 
+### Alpha 0.0.5
+- Settings Menu: Added settings panel with ability to toggle SFX and Music.
+- Data Reset: Added option to reset saved data (PlayerPrefs).
+- Coroutine Usage: Implemented coroutines for delayed scene loading after button sounds.
+
 ### Alpha 0.0.4
 - Pause System: Added pause menu with resume, restart and menu buttons.
 - Increasing Difficulty: Game speed increases every 5 points, making the game progressively harder.
@@ -46,5 +51,13 @@ First step into game development.
 - UI improvements (score display)
 
 ## Bug Fixes
+
+
+### Alpha 0.0.5
+- Bug Fix: Fixed high score display issue.
+- Bug Fix: Fixed button sound not playing before scene transition.
+
+
+### Alpha 0.0.2
 - Ghost Scoring: Fixed a bug where players earned points after death
 - Fly-Away: Resolved an issue where dead players could still fly out of bounds

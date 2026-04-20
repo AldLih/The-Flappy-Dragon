@@ -19,7 +19,7 @@ public class Trigger : MonoBehaviour
         if (collision.gameObject.layer == LayerMask.NameToLayer("Score") && dragon.isEggAlive)
         {
             sound.ScoreSound();
-            logic.AddScore(1);
+            logic.AddScore(1); 
         }
     }
 }

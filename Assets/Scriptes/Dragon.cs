@@ -25,6 +25,7 @@ public class Dragon : MonoBehaviour
     }
     void Update()
     {
+        
 
         if (isEggAlive && Time.timeScale != 0)
         {

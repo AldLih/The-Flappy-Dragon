@@ -1,3 +1,5 @@
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -10,7 +12,7 @@ public class LogicScript : MonoBehaviour
     [SerializeField] private UIScript uiScript;
 
 
-    private int bestScore = 0;
+    private int bestScore;
     private int playerScore;
 
 
@@ -18,12 +20,27 @@ public class LogicScript : MonoBehaviour
     {
         LoadData();
     }
+
+    IEnumerator LoadSceneAfterSound(string scene)
+    {
+        yield return new WaitForSeconds(soundScript.buttonClick.length); 
+        SceneManager.LoadScene(scene);
+    }
+
+    IEnumerator QuitGameAfterSound()
+    {
+        yield return new WaitForSeconds(soundScript.buttonClick.length);
+        Application.Quit();
+    }
     public void SaveData()
     {
-        uiScript.TheBestScoreInGame(bestScore);
+        uiScript.TheBestScoreInGame(bestScore, playerScore);
+        if (playerScore > bestScore)
+        {
+            bestScore = playerScore;
+        }
         PlayerPrefs.SetInt("BestScore", bestScore);
         PlayerPrefs.Save();
-
     }
 
     public void LoadData()
@@ -36,6 +53,8 @@ public class LogicScript : MonoBehaviour
     {
         PlayerPrefs.DeleteAll();
         PlayerPrefs.Save();
+        soundScript.ButtonSound();
+        StartCoroutine(LoadSceneAfterSound("MenuScene"));
     }
 
     public void AddScore(int normalScore)
@@ -70,34 +89,35 @@ public class LogicScript : MonoBehaviour
         soundScript.ButtonSound();
         Time.timeScale = 1;
     }
+
     public void RestartGame()
     {
         Time.timeScale = 1;
         soundScript.ButtonSound();
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        StartCoroutine(LoadSceneAfterSound("GameScene"));
     }
     public void StartGame()
     {
         Time.timeScale = 1;
         soundScript.ButtonSound();
-        SceneManager.LoadScene(sceneName);
+        StartCoroutine(LoadSceneAfterSound(sceneName));
     }
     public void GoToMenu()
     {
         Time.timeScale = 1;
         soundScript.ButtonSound();
-        SceneManager.LoadScene(sceneName);
+        StartCoroutine(LoadSceneAfterSound(sceneName));
     }
     public void QuitGame()
     {
         soundScript.ButtonSound();
-        Application.Quit();
+        StartCoroutine(QuitGameAfterSound());
     }
     public void GameOver()
     {
         Time.timeScale = 1;
-        uiScript.ShowGameOver();
         SaveData();
+        uiScript.ShowGameOver();
         soundScript.GameOverSound();
     }
 

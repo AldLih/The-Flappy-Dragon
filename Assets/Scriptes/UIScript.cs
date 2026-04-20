@@ -11,7 +11,9 @@ public class UIScript : MonoBehaviour
     [SerializeField] private GameObject gameOver;
     [SerializeField] private Text score;
     [SerializeField] private GameObject pause;
+    [SerializeField] private GameObject settignsMenu;
     [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject confirmMenu;
 
     public void ScoreChange(int playerScore)
     {
@@ -28,6 +30,20 @@ public class UIScript : MonoBehaviour
         score.gameObject.SetActive(false);
         gameOver.SetActive(true);
     }
+    public void SettingsMenuView(bool enable)
+    {
+        settignsMenu.SetActive(enable);
+    }
+
+    public void ShowConfirmMenu()
+    {
+        confirmMenu.SetActive(true);
+    }
+    public void CloseConfirmMenu()
+    {
+        confirmMenu.SetActive(false);
+    }
+
     public void ShowPauseMenu()
     {
         pauseMenu.SetActive(true);
@@ -46,11 +62,10 @@ public class UIScript : MonoBehaviour
             recordScoreInMenu.text = $"The Best Score : {bestScore}";
         }
     }
-    public void TheBestScoreInGame(int bestScore)
+    public void TheBestScoreInGame(int bestScore, int playerScore)
     {
-        if (int.Parse(score.text) > bestScore) {
-            bestScore = int.Parse(score.text);
-            recordScore.text = $"NEW RECORD : {bestScore}";
+        if (playerScore > bestScore) {
+            recordScore.text = $"NEW RECORD : {playerScore}";
         }
 
         else

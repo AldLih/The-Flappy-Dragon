@@ -7,14 +7,15 @@ public class Pipespawner : MonoBehaviour
     [SerializeField] private GameObject Pipe;
     public static Pipespawner Instance;
     public float spawnRate = 2;
-    private float timer = 0;
+    private float timer;
     private float pipeRange = 9;
-    private float spawnOffset = 5f;
+    private float spawnOffset = 10f;
     public float moveSpeed = 10f;
     public float maxSpeed = 40f;
     void Start()
     {
-
+        Spawn();
+        timer = -(spawnRate * 0.5f);
     }
     private void Awake()
     {
