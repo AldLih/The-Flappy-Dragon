@@ -7,6 +7,8 @@ public class SoundScript : MonoBehaviour
     public AudioSource musicSource;
     public AudioSource sfxSource;
     public AudioClip buttonClick;
+    public AudioClip dashSound;
+    public AudioClip x2Sound;
     [SerializeField] private AudioClip deathSound;
     [SerializeField] private AudioClip music;
     [SerializeField] private AudioClip jumpSound;
@@ -24,6 +26,14 @@ public class SoundScript : MonoBehaviour
     public void ButtonSound()
     {
         sfxSource.PlayOneShot(buttonClick);
+    }
+    public void DashSound()
+    {
+        sfxSource.PlayOneShot(dashSound);
+    }
+    public void X2Sound()
+    {
+        sfxSource.PlayOneShot(x2Sound);
     }
 
     public void GameOverSound()

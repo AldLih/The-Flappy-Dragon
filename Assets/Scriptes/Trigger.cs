@@ -16,7 +16,7 @@ public class Trigger : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.gameObject.layer == LayerMask.NameToLayer("Score") && dragon.isEggAlive)
+        if (dragon.isEggAlive && collision.CompareTag("ScoreCollider"))
         {
             sound.ScoreSound();
             logic.AddScore(1); 

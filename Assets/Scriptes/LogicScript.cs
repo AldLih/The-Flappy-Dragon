@@ -1,6 +1,7 @@
 using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.SceneManagement;
 
 
@@ -10,11 +11,11 @@ public class LogicScript : MonoBehaviour
     [SerializeField] private string sceneName;
     [SerializeField] private SoundScript soundScript;
     [SerializeField] private UIScript uiScript;
+    [SerializeField] private Dragon dragon;
 
-
+    public int scoreMultiplier = 1;
     private int bestScore;
-    private int playerScore;
-
+    public int  playerScore { get; private set; } = 0;
 
     private void Start()
     {
@@ -59,20 +60,26 @@ public class LogicScript : MonoBehaviour
 
     public void AddScore(int normalScore)
     {
-        playerScore += normalScore;
-        uiScript.ScoreChange(playerScore);
-        IncreaseDifficulty();
+        playerScore = playerScore + (normalScore*scoreMultiplier);
+        uiScript.UpdateScore(playerScore, scoreMultiplier);
+        if (!dragon.isDashing) 
+        {
+            IncreaseDifficulty();
+        }
     }
 
     public void IncreaseDifficulty()
     {
 
-        float newSpeed = 10f + (playerScore / 5) * 2f;
+        float baseSpawnRate = 2.5f;
+        float step = 0.05f;
+        float level = (playerScore / 5);
+        float newSpeed = 10f + level * 2f;
         if (Pipespawner.Instance.maxSpeed < newSpeed)
         {
             newSpeed = Pipespawner.Instance.maxSpeed;
         }
-        Pipespawner.Instance.spawnRate = 30f / newSpeed;
+        Pipespawner.Instance.spawnRate = baseSpawnRate - level * step;
         Pipespawner.Instance.moveSpeed = newSpeed;
     }
 
@@ -112,6 +119,15 @@ public class LogicScript : MonoBehaviour
     {
         soundScript.ButtonSound();
         StartCoroutine(QuitGameAfterSound());
+    }
+
+    public void X2Button()
+    {
+        dragon.x2 = true;
+    }
+    public void DashButton()
+    {
+        dragon.dash = true;
     }
     public void GameOver()
     {

@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5162583973131538758}
   - component: {fileID: 2775890924045804145}
   - component: {fileID: 3217342863734394499}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Middle
-  m_TagString: Untagged
+  m_TagString: Pipe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -92,6 +92,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Trigger
   logic: {fileID: 0}
+  dragon: {fileID: 0}
+  sound: {fileID: 0}
 --- !u!1 &6698975212961553718
 GameObject:
   m_ObjectHideFlags: 0
@@ -103,9 +105,9 @@ GameObject:
   - component: {fileID: 1545584092148677775}
   - component: {fileID: 2288036572936016384}
   - component: {fileID: 8623846280077030590}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Bottom Pipe
-  m_TagString: Untagged
+  m_TagString: Pipe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -241,9 +243,9 @@ GameObject:
   - component: {fileID: 1637441589867682972}
   - component: {fileID: 4475378032697939572}
   - component: {fileID: 4644730905216901988}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Top Pipe
-  m_TagString: Untagged
+  m_TagString: Pipe
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -378,7 +380,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7233214443685575942}
   - component: {fileID: 5219497201642278534}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Pipe
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -415,5 +417,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b78097007cac1b046832a1c0f0401df1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Pipemoving
-  movespeed: 5
   deadZone: -40

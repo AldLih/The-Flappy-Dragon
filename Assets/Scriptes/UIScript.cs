@@ -14,21 +14,59 @@ public class UIScript : MonoBehaviour
     [SerializeField] private GameObject settignsMenu;
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject confirmMenu;
+    [SerializeField] private GameObject dashButton;
+    [SerializeField] private GameObject x2Button;
 
-    public void ScoreChange(int playerScore)
+
+    public void UpdateScore(int playerScore, int multiplier)
     {
-        score.text = playerScore.ToString();
+        if (multiplier == 1)
+        {
+            score.text = playerScore.ToString();
+            score.color = Color.white;
+        }
+        else if (multiplier == 2)
+        {
+            score.text = playerScore + " X 2";
+            score.color = new Color32(255, 187, 0, 255);
+        }
+    }
+
+
+    public void ChangeX2ButtonCollor(bool enable, bool active)
+    {
+        if (active)
+        {
+            x2Button.GetComponent<Image>().color = new Color(255, 187, 0);
+        }
+        else
+        {
+            if (!enable)
+            {
+                x2Button.GetComponent<Image>().color = new Color(75, 0, 0);
+            }
+            else { x2Button.GetComponent<Image>().color = new Color(255, 255, 255); }
+        }
+    }
+    public void ChangeDashButtonCollor(bool enable)
+    {
+        if (!enable)
+        {
+            dashButton.GetComponent<Image>().color = new Color(75, 0, 0);
+        }
+        else { dashButton.GetComponent<Image>().color = new Color(255, 255, 255); }
     }
 
     public void ShowGameOver()
     {
         if (currentScore != null)
         {
-            currentScore.text = $"Current Score : {score.text}";
+            currentScore.text = $"Current Score : {logicScript.playerScore}";
         }
         pause.SetActive(false);
         score.gameObject.SetActive(false);
         gameOver.SetActive(true);
+        dashButton.SetActive(false);
     }
     public void SettingsMenuView(bool enable)
     {
@@ -64,7 +102,8 @@ public class UIScript : MonoBehaviour
     }
     public void TheBestScoreInGame(int bestScore, int playerScore)
     {
-        if (playerScore > bestScore) {
+        if (playerScore > bestScore)
+        {
             recordScore.text = $"NEW RECORD : {playerScore}";
         }
 
