@@ -16,8 +16,9 @@ public class UIScript : MonoBehaviour
     [SerializeField] private GameObject confirmMenu;
     [SerializeField] private GameObject dashButton;
     [SerializeField] private GameObject x2Button;
-
-
+    [SerializeField] private GameObject tutorial;
+    [SerializeField] private Image trophy;
+  
     public void UpdateScore(int playerScore, int multiplier)
     {
         if (multiplier == 1)
@@ -37,36 +38,42 @@ public class UIScript : MonoBehaviour
     {
         if (active)
         {
-            x2Button.GetComponent<Image>().color = new Color(255, 187, 0);
+            x2Button.GetComponent<Image>().color = new Color32(255, 187, 0, 255);
         }
         else
         {
             if (!enable)
             {
-                x2Button.GetComponent<Image>().color = new Color(75, 0, 0);
+                x2Button.GetComponent<Image>().color = new Color(75, 0, 0, 255);
             }
-            else { x2Button.GetComponent<Image>().color = new Color(255, 255, 255); }
+            else { x2Button.GetComponent<Image>().color = new Color(255, 255, 255, 255); }
         }
     }
     public void ChangeDashButtonCollor(bool enable)
     {
         if (!enable)
         {
-            dashButton.GetComponent<Image>().color = new Color(75, 0, 0);
+            dashButton.GetComponent<Image>().color = new Color32(75, 0, 0, 255);
         }
-        else { dashButton.GetComponent<Image>().color = new Color(255, 255, 255); }
+        else { dashButton.GetComponent<Image>().color = new Color(255, 255, 255, 255); }
     }
-
+    public void ShowTutorial(bool enable)
+    {
+        if (tutorial == null) { return; }
+        ;
+        tutorial.SetActive(enable);
+    }
     public void ShowGameOver()
     {
         if (currentScore != null)
         {
-            currentScore.text = $"Current Score : {logicScript.playerScore}";
+            currentScore.text = $"{logicScript.playerScore}";
         }
         pause.SetActive(false);
         score.gameObject.SetActive(false);
         gameOver.SetActive(true);
         dashButton.SetActive(false);
+        x2Button.SetActive(false);
     }
     public void SettingsMenuView(bool enable)
     {
@@ -97,21 +104,25 @@ public class UIScript : MonoBehaviour
     {
         if (recordScoreInMenu != null)
         {
-            recordScoreInMenu.text = $"The Best Score : {bestScore}";
+            recordScoreInMenu.text = $"{bestScore}";
         }
     }
     public void TheBestScoreInGame(int bestScore, int playerScore)
     {
         if (playerScore > bestScore)
         {
-            recordScore.text = $"NEW RECORD : {playerScore}";
+            trophy.color = new Color32(255, 187, 0, 255);
+            recordScore.color = new Color32(255, 187, 0, 255);
+            recordScore.text = $"{playerScore}";
         }
 
         else
         {
             if (recordScore != null)
             {
-                recordScore.text = $"The Best Score : {bestScore}";
+                trophy.color = new Color32(138, 138, 138, 255);
+                recordScore.color = new Color32(138, 138, 138, 255);
+                recordScore.text = $"{bestScore}";
             }
         }
 

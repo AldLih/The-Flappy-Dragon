@@ -10,6 +10,7 @@ public class Dragon : MonoBehaviour
     [SerializeField] private float Strength;
     [SerializeField] private UIScript uiScript;
     [SerializeField] private LogicScript logic;
+    [SerializeField] private Animator animator;
     public bool isEggAlive { get; private set; } = true;
     [SerializeField] private SoundScript soundScript;
     private float borderLine = 19f;
@@ -30,6 +31,7 @@ public class Dragon : MonoBehaviour
 
 
 
+
     private AudioSource audioSource;
     private void Awake()
     {
@@ -44,33 +46,35 @@ public class Dragon : MonoBehaviour
     }
     void Update()
     {
-        if ((Input.GetKeyDown(KeyCode.W)) || x2)
-        {
-            x2 = false;
-            if (enableX2)
-            {
-                StartCoroutine(X2());
-            }
-        }
-
-        if ((Input.GetKeyDown(KeyCode.Q)) || dash)
-        {
-            dash = false;
-            if (enableDash)
-            {
-                StartCoroutine(Dash());
-            }
-        }
-
-
+        
+        if (logic.isTutorial) return;
 
         if (isEggAlive && Time.timeScale != 0)
         {
+            if ((Input.GetKeyDown(KeyCode.W)) || x2)
+            {
+                x2 = false;
+                if (enableX2)
+                {
+                    StartCoroutine(X2());
+                }
+            }
+
+            if ((Input.GetKeyDown(KeyCode.LeftShift)) || dash)
+            {
+                dash = false;
+                if (enableDash)
+                {
+                    StartCoroutine(Dash());
+                }
+            }
             bool isJump = Input.GetKeyDown(KeyCode.Space) || Input.touchCount > 0 && Input.GetTouch(0).phase == TouchPhase.Began;
+            
             if (isJump)
             {
                 soundScript.JumpSound();
                 rb.linearVelocity = Vector2.up * Strength;
+                animator.SetTrigger("isFlying");
             }
         }
 
@@ -107,7 +111,7 @@ public class Dragon : MonoBehaviour
         isDashing = false;
         Pipespawner.Instance.spawnRate = spawnRateBeforeDashSpeed;
         Pipespawner.Instance.moveSpeed = moveSpeedBeforeDashSpeed;
-        Pipespawner.Instance.maxSpeed = 50f;
+        Pipespawner.Instance.maxSpeed = 45f;
         yield return new WaitForSeconds(dashCD);
         enableDash = true;
         uiScript.ChangeDashButtonCollor(enableDash);

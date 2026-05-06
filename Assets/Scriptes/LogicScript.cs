@@ -15,11 +15,22 @@ public class LogicScript : MonoBehaviour
 
     public int scoreMultiplier = 1;
     private int bestScore;
+    private bool firstLaunch = true;
+    public bool isTutorial;
     public int  playerScore { get; private set; } = 0;
 
     private void Start()
     {
         LoadData();
+        if (firstLaunch && SceneManager.GetActiveScene().name == "GameScene") 
+        {
+            soundScript.musicSource.Pause();
+            isTutorial = true;
+            uiScript.ShowTutorial(true);
+            Time.timeScale = 0;
+            firstLaunch = false;
+            PlayerPrefs.SetInt("FirstLaunch", 0);
+        }
     }
 
     IEnumerator LoadSceneAfterSound(string scene)
@@ -47,6 +58,7 @@ public class LogicScript : MonoBehaviour
     public void LoadData()
     {
         bestScore = PlayerPrefs.GetInt("BestScore", bestScore);
+        firstLaunch = PlayerPrefs.GetInt("FirstLaunch", 1) == 1;
         uiScript.TheBestScoreInMenu(bestScore);
     }
 
@@ -87,6 +99,7 @@ public class LogicScript : MonoBehaviour
     {
         uiScript.ShowPauseMenu();
         soundScript.ButtonSound();
+        soundScript.musicSource.Pause();
         Time.timeScale = 0;
     }
 
@@ -94,6 +107,7 @@ public class LogicScript : MonoBehaviour
     {
         uiScript.ClosePauseMenu();
         soundScript.ButtonSound();
+        soundScript.musicSource.Play();
         Time.timeScale = 1;
     }
 
@@ -105,9 +119,17 @@ public class LogicScript : MonoBehaviour
     }
     public void StartGame()
     {
-        Time.timeScale = 1;
         soundScript.ButtonSound();
         StartCoroutine(LoadSceneAfterSound(sceneName));
+        Time.timeScale = 1;
+    }
+    public void CloseTutMenu()
+    {
+        soundScript.ButtonSound();
+        uiScript.ShowTutorial(false);
+        Time.timeScale = 1;
+        isTutorial = false;
+        soundScript.musicSource.Play();
     }
     public void GoToMenu()
     {
@@ -120,6 +142,10 @@ public class LogicScript : MonoBehaviour
         soundScript.ButtonSound();
         StartCoroutine(QuitGameAfterSound());
     }
+    public void GitHub()
+    {
+        Application.OpenURL("https://github.com/AldLih");
+    }
 
     public void X2Button()
     {
@@ -129,11 +155,16 @@ public class LogicScript : MonoBehaviour
     {
         dragon.dash = true;
     }
+    IEnumerator ShowGameOverDelay()
+    {
+        yield return new WaitForSeconds(0.5f);
+        uiScript.ShowGameOver();
+    }
     public void GameOver()
     {
         Time.timeScale = 1;
+        StartCoroutine(ShowGameOverDelay());
         SaveData();
-        uiScript.ShowGameOver();
         soundScript.GameOverSound();
     }
 

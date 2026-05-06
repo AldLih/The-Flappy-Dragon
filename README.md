@@ -1,63 +1,105 @@
-# The Flappy Dragon
+# 🐉 The Flappy Dragon
 
-Simple Flappy Dragon game made in Unity.
+A fast-paced arcade game where you control a dragon, avoid obstacles, and use abilities to survive as long as possible.
 
-## Features
-- Jump mechanic
-- Score system & high score saving
-- Sound effects & background music
-- Pause menu
-- Increasing difficulty
-- Quit button
+---
 
-## Screenshots
+## 🎮 Gameplay
 
-![gameplay](screenshots/gameplay.png)
-![gameover](screenshots/gamemenu.png)
+- Tap / press to fly  
+- Avoid pipes  
+- Survive as long as possible  
+- Use abilities to gain advantage  
+
+---
+
+## ✨ Features
+
+- Smooth jump mechanic  
+- Score system & high score saving  
+- Increasing difficulty over time  
+- Dash ability (burst speed)  
+- X2 Score multiplier ability  
+- Sound effects & background music  
+- Settings menu (Music / SFX toggle)  
+- UI animations (beta)  
+
+---
+
+## 📸 Screenshots
+
+![menu](screenshots/menu.png) 
+![settings](screenshots/options.png)  
+![tutorial](screenshots/tutorial.png)  
+![gameplay](screenshots/gameplay.png)  
+![pause](screenshots/pause.png)
+![gameover](screenshots/GMV.png)   
+
+---
+
+## 🛠 Tech
+
+- Unity  
+- C#  
+- Aseprite  
+
+---
+
+## 🎯 Goal
+
+This project is my first step into game development.  
+The goal is to build complete games from scratch, focusing on gameplay, systems, and polish.
+
+---
 
 
-## Tech
-- Unity
-- C#
-- Aseprite
+## 🔄 Updates
 
-## Goal
-First step into game development.
+### Alpha 0.1
+- Abilities: Added Dash and X2 score multiplier mechanics  
+- Tutorial: Added first-time tutorial panel  
+- UI Overhaul: Fully redesigned UI (menus, buttons, layout)  
+- Visual Update: New sprites for dragon, pipes and UI  
+- Audio Update: Added new sound effects and background music  
+- Animations (Beta): Started implementing animations (wings, feedback)  
 
-
-## Updates
+---
 
 ### Alpha 0.0.5
-- Settings Menu: Added settings panel with ability to toggle SFX and Music.
-- Data Reset: Added option to reset saved data (PlayerPrefs).
-- Coroutine Usage: Implemented coroutines for delayed scene loading after button sounds.
+- Settings Menu: Added SFX and Music toggle  
+- Data Reset: Added PlayerPrefs reset option  
+- Coroutines: Delayed scene loading after button sounds  
 
 ### Alpha 0.0.4
-- Pause System: Added pause menu with resume, restart and menu buttons.
-- Increasing Difficulty: Game speed increases every 5 points, making the game progressively harder.
-- UI Overhaul: Separated UI logic into dedicated UIScript for cleaner architecture
-
-
+- Pause System: Added pause menu (resume, restart, menu)  
+- Increasing Difficulty: Speed increases every 5 points  
+- UI Refactor: Separated UI logic into UIScript  
 
 ### Alpha 0.0.3
-- Improved UI: Enhanced menus and game over screens for better user experience.
-- Audio Overhaul: Added new sound effects and a separate system for background music and SFX.
-- Exit Function: Added a Quit button to exit the application.
-
+- Improved UI and game over screen  
+- Audio system split into music & SFX  
+- Added Quit button  
 
 ### Alpha 0.0.2
-- Added high score system (PlayerPrefs)
-- Record saving between sessions
-- UI improvements (score display)
+- High score system (PlayerPrefs)  
+- Score saving between sessions  
+- UI improvements  
 
-## Bug Fixes
+---
 
+## 🐞 Bug Fixes
 
 ### Alpha 0.0.5
-- Bug Fix: Fixed high score display issue.
-- Bug Fix: Fixed button sound not playing before scene transition.
-
+- Fixed high score display issue  
+- Fixed button sound not playing before scene transition  
 
 ### Alpha 0.0.2
-- Ghost Scoring: Fixed a bug where players earned points after death
-- Fly-Away: Resolved an issue where dead players could still fly out of bounds
+- Fixed ghost scoring after death  
+- Fixed flying after death  
+
+---
+
+
+## 🔗 Author
+
+GitHub: https://github.com/AldLih

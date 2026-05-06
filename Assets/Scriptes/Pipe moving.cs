@@ -10,8 +10,16 @@ public class Pipemoving : MonoBehaviour
     void Update()
     {
         float speed = Pipespawner.Instance.moveSpeed;
-        transform.position = transform.position + (Vector3.left * speed * Time.deltaTime);
-        if (transform.position.x < deadZone)
+
+        Vector3 pos = transform.position;
+        pos += Vector3.left * speed * Time.deltaTime;
+
+        float ppu = 100f; 
+        pos.x = Mathf.Round(pos.x * ppu) / ppu;
+
+        transform.position = pos;
+
+        if (pos.x < deadZone)
         {
             Destroy(gameObject);
         }

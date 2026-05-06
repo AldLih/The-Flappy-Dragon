@@ -11,7 +11,7 @@ public class Pipespawner : MonoBehaviour
     private float pipeRange = 9;
     private float spawnOffset = 10f;
     public float moveSpeed = 10f;
-    public float maxSpeed = 50f;
+    public float maxSpeed = 45f;
     void Start()
     {
         Spawn();
